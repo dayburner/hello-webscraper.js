@@ -41,14 +41,33 @@ app.get('/scrape', function(req, res){
       //Utilizing jQuery we can easily navigate and get the text by writing the following code:
         title = data.children().first.text();
 
-     //Once we have our title, we'll store it to our json object
+      //Once we have our title, we'll store it to our json object
         json.title = title;
+
+
+
+
+
+
+
+
+
+        //We will repeat the same process as above. This time re notice the release is in the last element
+        //This code will move us to the position of the location of the release year
+        release = data.children().last().children().text();
+
+        json.title = title;
+
+        //Once again extract the data and save it to the json object
+        json.release = release;
+
+
+
 
       })
     }
   })
 })
-
 
 
 
