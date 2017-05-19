@@ -28,7 +28,7 @@ app.get('/scrape', function(req, res){
       var json = { title : "", release : "", rating : ""};
 
 
-
+//TITLE
 
 
       //We will use the unique header class as a starting point
@@ -47,7 +47,7 @@ app.get('/scrape', function(req, res){
 
 
 
-
+//RELEASE YEAR
 
 
 
@@ -62,6 +62,24 @@ app.get('/scrape', function(req, res){
         json.release = release;
 
 
+
+      })
+
+
+//RATING
+
+
+
+
+      //Since the rating is in another part of the DOM, we'll have to write a new jQuery function to extract the data
+      $('.start-box-giga-start').filter(function(){
+        var data = $(this);
+
+
+        //The .start-box-giga-star class was exactly where we wanted it to be.
+        //To get the rating, we can simply just get the .text(), no need to traverse the DOM
+        rating = data.text();
+        json.rating = rating;
 
 
       })
