@@ -8,6 +8,7 @@ var PORT = 8081;
 var app = express();
 
 app.get('/scrape', function(req, res){
+
   //URL to scrape - Anchorman 2
   url = 'http://www.imdb.com/title/tt1229340/';
 
@@ -25,6 +26,25 @@ app.get('/scrape', function(req, res){
       //Finally, define varibles to capture
       var title, release, rating;
       var json = { title : "", release : "", rating : ""};
+
+
+
+
+
+      //We will use the unique header class as a starting point
+      $('.header').filter(function(){
+
+      //Let's store the data we filter into a varible so we can easily see what's going on
+        var data = $(this);
+
+      //In examing the DOM we notice that the title rests within the first child element of the header tag
+      //Utilizing jQuery we can easily navigate and get the text by writing the following code:
+        title = data.children().first.text();
+
+     //Once we have our title, we'll store it to our json object
+        json.title = title;
+
+      })
     }
   })
 })
@@ -34,7 +54,7 @@ app.get('/scrape', function(req, res){
 
 
 app.listen(PORT, function(){
-  console.log(Server listening on port ', PORT);
+  console.log('Server listening on port ', PORT);
 });
 
 exports = module.exports = app;
